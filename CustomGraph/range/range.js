@@ -14,6 +14,13 @@ export default class Range extends Component {
     onPress: (range: string) => void,
   };
 
+  state = {
+    width: 0,
+    height: 0,
+    x: 0,
+    y: 0,
+  }
+
   onPress = () => {
     const {
       name,
@@ -23,6 +30,8 @@ export default class Range extends Component {
     onPress(index);
   };
 
+  
+
   onLayout = (e) => {
     this.setState({
       width: e.nativeEvent.layout.width,
@@ -30,17 +39,25 @@ export default class Range extends Component {
       x: e.nativeEvent.layout.x,
       y: e.nativeEvent.layout.y
     })
+    console.log(this.props.index)
+    console.log(this.state)
+    this.props.getRangeBtnWidth(this.state.width, this.props.index)
   }
 
   render() {
     const {
       name,
       active,
-      width
+      width,
+      index,
+      ageIndexs,
+      verLine,
+      lineWidth
     } = this.props;
     return (
-        <TouchableOpacity style={[styles.container, {}]} onPress={this.onPress}>
-          <View   style={active ? styles.bottomActive : styles.bottomInactive}>
+        <TouchableOpacity style={[styles.container, {left: verLine[ageIndexs[index]] - this.state.width / 4 + 3}]} onPress={this.onPress}>
+          {/* <View style = {[{position: 'absolute', width: lineWidth, left: this.state.width / 2 + 5, height: 10, backgroundColor: 'yellow'}]}/> */}
+          <View  onLayout = {this.onLayout} style={active ? styles.bottomActive : styles.bottomInactive}>
             <Text style={[styles.text, active ? styles.active : {}]}>{name}</Text>
           </View>
         </TouchableOpacity>
@@ -52,7 +69,8 @@ export default class Range extends Component {
 const styles = StyleSheet.create({
   container: {
     padding: 6,
-    // borderWidth: 1
+    // borderWidth: 1,
+    position: 'absolute'
   },
   text: {
     color: '#213e72',
@@ -73,10 +91,10 @@ const styles = StyleSheet.create({
     paddingLeft: 4,
     paddingRight: 4,
     justifyContent: 'center',
-    // backgroundColor: 'rgba(85, 200, 200, 1)',
-    backgroundColor: '#fff'
+    backgroundColor: 'rgba(85, 200, 200, 1)',
+    // backgroundColor: '#fff'
   },
   active: {
-    color: '#213e72',
+    color: '#fff',
   },
 });

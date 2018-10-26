@@ -26,6 +26,10 @@ export default class App extends Component<Props> {
   constructor(props) 
   {
     super(props);
+    this.state = {
+      x: 0,
+      y: 0,
+    }
     const startTimeStamp = 946684800;
     const weeklength = 1050;
     let data = [];
@@ -49,19 +53,23 @@ export default class App extends Component<Props> {
       }
       this.finalData[index] = value;
     });
-    console.log(this.finalData);
-    console.log(data);
-    console.log(jsonData);
+    // console.log(this.finalData);
+    // console.log(data);
+    // console.log(jsonData);
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <Text>Age : {this.state.x}</Text>
+        <Text>Value : {this.state.y}</Text>
         <CustomGraph
         // data = {this.finalData}
         onChange = {(x, y) => {
           console.log(x);
-          console.log(y);
+          this.setState({x})
+          this.setState({y})
+          // console.log(y);
         }}
         />
       </View>
@@ -75,6 +83,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#739ec8',
+    padding: 5
   },
   welcome: {
     height: 200,

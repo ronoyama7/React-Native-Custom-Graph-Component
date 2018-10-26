@@ -12,17 +12,25 @@ export default class Switcher extends Component {
       ranges,
       current,
       onSelectRange,
-      width
+      width,
+      ageIndexs,
+      verLine,
+      lineWidth,
+      getRangeBtnWidth
     } = this.props;
     return (
       <View style={styles.container}>
         {ranges.map((name, index) =>
           <Range
             name={name}
-            width = { width / ranges.length }
+            width = { width }
             index = {index}
+            lineWidth = {lineWidth}
+            ageIndexs = {ageIndexs}
+            verLine = {verLine}
             active={current === index}
             onPress={onSelectRange}
+            getRangeBtnWidth = {getRangeBtnWidth}
             key={index}
           />)}
       </View>
@@ -34,7 +42,7 @@ export default class Switcher extends Component {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    height: 33
   },
 });
