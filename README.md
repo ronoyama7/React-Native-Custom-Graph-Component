@@ -1,5 +1,5 @@
 <p align="center" >
-    <img alt="react-native-custom-component" src="https://github.com/KeyBusiness1204/CustomGraphComponent/blob/master/Resourse/screenshot.gif" width="260" height="510" />
+    <img alt="react-native-custom-component" src="https://github.com/KeyBusiness1204/React-Native-Custom-Graph-Component/blob/master/Resourse/screenshot02.gif" width="260" height="510" />
     <h3 align="center">
      React Native Customize Component
     </h3>
