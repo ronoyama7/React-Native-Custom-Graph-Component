@@ -27,50 +27,27 @@ export default class App extends Component<Props> {
   {
     super(props);
     this.state = {
-      x: 0,
+      age: 0,
       y: 0,
-    }
-    const startTimeStamp = 946684800;
-    const weeklength = 1050;
-    let data = [];
-    this.finalData = [];
-    for (let i = 0; i < weeklength; i++) {
-      data[i] = [];
-    }
-    jsonData.forEach((element, index) => {
-      let timestamp = parseInt((element[0] / 1000  - startTimeStamp) / (3600 * 24 * 7));
-      data[timestamp].push(element[2]);
-      jsonData[index][0] = timestamp;
-    });
-    data.forEach((element, index) => {
-      let value = 0;
-      if (element.length != 0) {
-        let temp = 0;
-        for(let i = 0; i < element.length; i++) {
-          temp += element[i];
-        }
-        value = parseInt(temp / element.length);
-      }
-      this.finalData[index] = value;
-    });
-    // console.log(this.finalData);
-    // console.log(data);
-    // console.log(jsonData);
+    };
+    // Should Add 0 at start and end of array
+    this.data = [20, 18, 32, 24, 36, 18, 36, 48, 50, 40, 30, 20, 10, 20, 40, 50, 70, 80, 60, 50, 40];
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Age : {this.state.x}</Text>
+        <Text>Age : {this.state.age}</Text>
         <Text>Value : {this.state.y}</Text>
         <CustomGraph
-        // data = {this.finalData}
-        onChange = {(x, y) => {
-          console.log(x);
-          this.setState({x})
-          this.setState({y})
-          // console.log(y);
-        }}
+          data={this.data}
+          height={200}
+          itemIndex={4}
+          readonly={false}
+          onChange={(age, y) => {
+            this.setState({ age });
+            this.setState({ y });
+          }}
         />
       </View>
     );
